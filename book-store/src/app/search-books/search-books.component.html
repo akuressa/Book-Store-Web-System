@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row mb-4 mt-5">
+    <div class="col-8 col-md-4">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Enter title or author">
+    </div>
+    <div class="col-4">
+        <button (click)="searchBooks()" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</div>
+
+<div class="container row">
+  <div id="books" class="row view-group">
+    <div class="item col-xs-4 col-lg-4" *ngFor="let book of dataTableData">
+        <div class="thumbnail card">
+            <div class="img-event d-flex justify-content-center align-items-center">
+                <img class="group list-group-image img-fluid" src="{{ getImageUrl(book.cover_image) }}" alt="" />
+            </div>
+            <div class="caption card-body">
+              <div class="title">
+                <span class="group card-title inner list-group-item-heading">
+                  Title:
+                </span>
+                <span>{{ book.title }}</span>
+              </div>
+              <div class="author">
+                <span class="group card-title inner list-group-item-heading">
+                  Author:
+                </span>
+                <span>{{ book.username }}</span>
+              </div>
+              <div class="description mt-3">
+                <p class="group inner list-group-item-text" [ngClass]="{'expanded': isExpanded && book.id === selectedBookId}">
+                  {{ book.description }}
+                </p>
+              </div>
+              <div class="btn custom-button-container">
+                <button class="btn btn-warning" *ngIf="!isExpanded || book.id != selectedBookId" (click)="showMore(book.id)">Show More</button>
+                <button class="btn btn-warning" *ngIf="isExpanded && book.id === selectedBookId" (click)="showLess(book.id)">Show less</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

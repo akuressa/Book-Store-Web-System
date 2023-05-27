@@ -1,0 +1,30 @@
+.group.inner.list-group-item-text {
+  max-height: 3em;
+  overflow: hidden;
+  position: relative;
+}
+
+.group.inner.list-group-item-text.expanded {
+  max-height: none;
+}
+
+.group.inner.list-group-item-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to right, transparent, white 80%);
+  width: 100%;
+  height: 1.5em;
+}
+.group.inner.list-group-item-text button {
+  position: relative;
+  z-index: 1;
+}
+
+.mdc-data-table__cell {
+  padding: 5px 16px 5px 16px;
+}
+.group.inner.list-group-item-text.expanded-no-overlay::after {
+  display: none;
+}

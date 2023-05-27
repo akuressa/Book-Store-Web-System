@@ -1,0 +1,14 @@
+.carousel-image {
+  height: 300px;
+}
+
+@media (min-width: 670px) {
+  .carousel-image {
+    height: 500px;
+  }
+}
+
+
+
+
+
