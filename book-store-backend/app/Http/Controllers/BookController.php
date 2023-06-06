@@ -48,7 +48,7 @@ class BookController extends Controller
                 $query->select('id', 'username');
             }])
             ->whereHas('author', function ($query) {
-                $query->where('is_active', 0);
+                $query->where('is_active', 1);
             })
             ->select('id', 'title', 'cover_image', 'description', 'author_id')
             ->get();
