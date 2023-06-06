@@ -27,7 +27,7 @@
                 <span class="group card-title inner list-group-item-heading">
                   Author:
                 </span>
-                <span>{{ book.username }}</span>
+                <span>{{ book.author.username }}</span>
               </div>
               <div class="description mt-3">
                 <p class="group inner list-group-item-text" [ngClass]="{'expanded': isExpanded && book.id === selectedBookId}">

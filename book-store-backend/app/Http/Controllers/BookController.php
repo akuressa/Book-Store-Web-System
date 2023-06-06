@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Book;
+use Exception;
 
 class BookController extends Controller
 {
@@ -41,12 +42,24 @@ class BookController extends Controller
 
     public function booksWithAuthors()
     {
-        $book_list = Book::join('authors', 'books.author_id', 'authors.id')
-                ->where('authors.is_active', 1)
-                ->select('books.id', 'books.title', 'books.cover_image', 'books.description', 'authors.username')
-                ->get();
+        try
+        {
+            $book_list = Book::with(['author' => function ($query) {
+                $query->select('id', 'username');
+            }])
+            ->whereHas('author', function ($query) {
+                $query->where('is_active', 0);
+            })
+            ->select('id', 'title', 'cover_image', 'description', 'author_id')
+            ->get();
 
-        return response()->json(['msg'=>'Book list rendered succesfully', 'data'=>$book_list], 200);
+            return response()->json(['msg'=>'Book list rendered succesfully', 'data'=>$book_list], 200);
+        }
+        catch(Exception $e)
+        {
+            return response()->json(['msg'=>'error', 'error'=> $e->getMessage()]);
+        }
+
     }
 
 }

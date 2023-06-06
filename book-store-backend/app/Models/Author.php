@@ -45,6 +45,6 @@ class Author extends Authenticatable
     ];
 
     public function book_list(){
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class, 'author_id');
     }
 }

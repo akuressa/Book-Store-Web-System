@@ -19,10 +19,7 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-// Registration
 Route::post('/register', [RegisteredUserController::class, 'store']);
-
-// Login
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::get('/searchBooksWithAuthors', [AdminController::class, 'searchBooks']);
 Route::get('/getBooksWithAuthors', [BookController::class, 'booksWithAuthors']);
